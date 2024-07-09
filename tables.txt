@@ -1,0 +1,31 @@
+Create table Customer
+(
+customer_id int primary key,
+name varchar(50) not null,
+address varchar(50) not null
+);
+
+create table Products
+(
+product_id int primary key,
+name varchar(50) not null,
+price float not null
+);
+
+create table Orders
+(
+order_id int primary key,
+order_date date not null,
+customer_id  int,
+foreign key (customer_id) references Customer(customer_id)
+);
+
+create table Order_details
+(
+order_id int,
+product_id int,
+quantity int,
+Primary key (order_id,product_id),
+foreign key (product_id) references Product(product_id),
+FOREIGN KEY (order_id) REFERENCES Orders(order_id)
+);
